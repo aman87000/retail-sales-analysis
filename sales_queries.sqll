@@ -1,0 +1,164 @@
+USE sales_project;
+
+-- Total Records
+SELECT COUNT(*) AS Total_Orders
+FROM `sales data`;
+
+-- Total Sales
+SELECT ROUND(SUM(Sales),2) AS Total_Sales
+FROM `sales data`;
+
+-- Total Profit
+SELECT ROUND(SUM(Profit),2) AS Total_Profit
+FROM `sales data`;
+
+-- Average Sales
+SELECT ROUND(AVG(Sales),2) AS Average_Sales
+FROM `sales data`;
+
+-- Average Profit
+SELECT ROUND(AVG(Profit),2) AS Average_Profit
+FROM `sales data`;
+
+-- Sales by Category
+SELECT Category,
+       ROUND(SUM(Sales),2) AS Total_Sales
+FROM `sales data`
+GROUP BY Category
+ORDER BY Total_Sales DESC;
+
+-- Profit by Category
+SELECT Category,
+       ROUND(SUM(Profit),2) AS Total_Profit
+FROM `sales data`
+GROUP BY Category
+ORDER BY Total_Profit DESC;
+
+-- Sales by Region
+SELECT Region,
+       ROUND(SUM(Sales),2) AS Total_Sales
+FROM `sales data`
+GROUP BY Region
+ORDER BY Total_Sales DESC;
+
+-- Profit by Region
+SELECT Region,
+       ROUND(SUM(Profit),2) AS Total_Profit
+FROM `sales data`
+GROUP BY Region
+ORDER BY Total_Profit DESC;
+
+-- Sales by Segment
+SELECT Segment,
+       ROUND(SUM(Sales),2) AS Total_Sales
+FROM `sales data`
+GROUP BY Segment
+ORDER BY Total_Sales DESC;
+
+-- Top 10 Products
+SELECT `Product Name`,
+       ROUND(SUM(Sales),2) AS Total_Sales
+FROM `sales data`
+GROUP BY `Product Name`
+ORDER BY Total_Sales DESC
+LIMIT 10;
+
+-- Top 10 Customers
+SELECT `Customer Name`,
+       ROUND(SUM(Sales),2) AS Total_Sales
+FROM `sales data`
+GROUP BY `Customer Name`
+ORDER BY Total_Sales DESC
+LIMIT 10;
+
+-- Top 10 Customers by Profit
+SELECT `Customer Name`,
+       ROUND(SUM(Profit),2) AS Total_Profit
+FROM `sales data`
+GROUP BY `Customer Name`
+ORDER BY Total_Profit DESC
+LIMIT 10;
+
+-- Top 5 Cities by Sales
+SELECT City,
+       ROUND(SUM(Sales),2) AS Total_Sales
+FROM `sales data`
+GROUP BY City
+ORDER BY Total_Sales DESC
+LIMIT 5;
+
+-- Top 5 States by Sales
+SELECT State,
+       ROUND(SUM(Sales),2) AS Total_Sales
+FROM `sales data`
+GROUP BY State
+ORDER BY Total_Sales DESC
+LIMIT 5;
+
+-- Monthly Sales Trend
+SELECT MONTH(`Order Date`) AS Month_No,
+       ROUND(SUM(Sales),2) AS Total_Sales
+FROM `sales data`
+GROUP BY MONTH(`Order Date`)
+ORDER BY Month_No;
+
+-- Monthly Profit Trend
+SELECT MONTH(`Order Date`) AS Month_No,
+       ROUND(SUM(Profit),2) AS Total_Profit
+FROM `sales data`
+GROUP BY MONTH(`Order Date`)
+ORDER BY Month_No;
+
+-- Highest Profit Product
+SELECT `Product Name`,
+       ROUND(SUM(Profit),2) AS Total_Profit
+FROM `sales data`
+GROUP BY `Product Name`
+ORDER BY Total_Profit DESC
+LIMIT 1;
+
+-- Lowest Profit Product
+SELECT `Product Name`,
+       ROUND(SUM(Profit),2) AS Total_Profit
+FROM `sales data`
+GROUP BY `Product Name`
+ORDER BY Total_Profit ASC
+LIMIT 1;
+
+-- Sales and Profit by State
+SELECT State,
+       ROUND(SUM(Sales),2) AS Total_Sales,
+       ROUND(SUM(Profit),2) AS Total_Profit
+FROM `sales data`
+GROUP BY State
+ORDER BY Total_Sales DESC;
+
+-- Sales and Profit by Region
+SELECT Region,
+       ROUND(SUM(Sales),2) AS Total_Sales,
+       ROUND(SUM(Profit),2) AS Total_Profit
+FROM `sales data`
+GROUP BY Region
+ORDER BY Total_Sales DESC;
+
+-- Category Wise Discount Analysis
+SELECT Category,
+       ROUND(AVG(Discount),2) AS Avg_Discount
+FROM `sales data`
+GROUP BY Category
+ORDER BY Avg_Discount DESC;
+
+-- Top 10 Most Sold Products
+SELECT `Product Name`,
+       SUM(Quantity) AS Total_Quantity
+FROM `sales data`
+GROUP BY `Product Name`
+ORDER BY Total_Quantity DESC
+LIMIT 10;
+
+-- Region Wise Order Count
+SELECT Region,
+       COUNT(*) AS Total_Orders
+FROM `sales data`
+GROUP BY Region
+ORDER BY Total_Orders DESC;
